@@ -1,0 +1,574 @@
+:root {
+    --main-bg: #151a1e;
+    --main-text: #eaeaea;
+    --accent: #20c997;
+    --nav-bg: #23252f;
+    --section-bg: #21232c;
+    --card-bg: #252837;
+    --card-text: #eaeaea;
+    --nav-height: 72px;
+    --burger-color: #ffb300; /* Orange for dark theme */
+    --burger-color-active: #ffe082; /* Light orange when active */
+}
+
+body.light-theme {
+    --main-bg: #f4f4f4;
+    --main-text: #222;
+    --accent: #20a177;
+    --nav-bg: #fff;
+    --section-bg: #eaeaea;
+    --card-bg: #fff;
+    --card-text: #222;
+    --burger-color: #283593; /* Indigo for light theme */
+    --burger-color-active: #7986cb; /* Lighter indigo when active */
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    background: var(--main-bg);
+    color: var(--main-text);
+    transition: background 0.4s, color 0.4s;
+}
+
+/* Navbar */
+#navbar {
+    background: var(--nav-bg);
+    color: var(--main-text);
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: top 0.4s, height 0.3s;
+    height: var(--nav-height);
+    box-shadow: 0 2px 8px rgba(20, 22, 30, 0.02);
+    display: block;
+    
+}
+#navbar.hide {
+    top: -100px;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    height: 20px; /* Changed from 2px to 100% */
+    padding: 8px 20px;
+    /* background-color: #20a177; <-- Removed, as nav-bg is used */
+    background-color: #11997a;
+}
+
+#nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 105;
+    margin-right: 12px;
+    order: 0;
+}
+#nav-toggle .bar {
+    width: 26px;
+    height: 4px;
+    background: var(--burger-color);
+    margin: 4px 0;
+    border-radius: 2px;
+    display: block;
+    transition: all 0.3s;
+}
+#nav-toggle.active .bar {
+    background: var(--burger-color-active);
+}
+#nav-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+#nav-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+#nav-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--main-text);
+    margin-right: 16px;
+    order: 1;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.4em;
+    cursor: pointer;
+    padding: 8px;
+    color: var(--accent);
+    outline: none;
+    margin-left: 12px;
+    margin-right: 10px;
+    order: 2;
+}
+#theme-toggle:focus {
+    outline: 2px dashed var(--accent);
+}
+
+#nav-menu {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    margin: 0;
+    align-items: center;
+    transition: max-height 0.3s;
+    order: 3;
+}
+#nav-menu a {
+    color: var(--main-text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+#nav-menu a:hover {
+    color: var(--accent);
+}
+
+@media (max-width: 900px) {
+    .nav-container {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 4px 7px;
+    }
+    #nav-toggle {
+    display: flex;
+    }
+    #theme-toggle {
+        margin-left: auto;
+        margin-right: 6px;
+    }
+    .logo {
+        margin-right: 12px;
+    }
+    #nav-menu {
+        position: absolute;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        background: var(--nav-bg);
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        transition: max-height 0.4s;
+    }
+    #nav-menu.open {
+        max-height: 600px;
+    }
+    #nav-menu li {
+        margin: 0;
+    }
+    #nav-menu a {
+        padding: 20px 24px;
+        display: block;
+    }
+    }
+
+    /* Section Styles */
+    .main-section {
+    background: var(--section-bg);
+    min-height: 300px;
+    transition: background 0.4s;
+    }
+    .home-content {
+    text-align: center;
+    padding: 90px 10px 60px 10px;
+    }
+    .home-content h2 {
+    font-size: 2.5rem;
+    }
+    .home-content span {
+    color: var(--accent);
+    }
+    .cta-btn {
+    background: var(--accent);
+    color: #222;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 25px;
+    display: inline-block;
+    transition: background 0.2s, color 0.2s;
+    }
+    .cta-btn:hover {
+    background: #11997a;
+    color: #fff;
+    }
+    .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    }
+    section h2 {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 5px;
+    margin-bottom: 25px;
+    }
+    section ul,
+    section p {
+    font-size: 1.08rem;
+    }
+    section ul {
+    padding-left: 18px;
+    }
+    .project {
+    background: var(--card-bg);
+    color: var(--card-text);
+    margin-bottom: 20px;
+    padding: 12px 18px;
+    border-radius: 7px;
+    transition: background 0.4s, color 0.4s;
+    }
+    b {
+    color: var(--accent);
+    }
+
+    /* Responsive Sections */
+    @media (max-width: 700px) {
+    /* This rule seems to conflict with your navbar's mobile layout. 
+      Review if you still need it.
+    */
+    /* .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+    } */
+    .container {
+        padding: 30px 7px;
+    }
+    .main-section {
+        padding: 32px 0;
+    }
+    }
+
+/* ---------------- About Section ------------ */
+.about-flex-wrapper {
+    display: flex;
+    align-items: center; 
+    gap: 40px; 
+}
+
+.about-image img {
+    width: 250px; 
+    height: 250px; 
+    object-fit: cover; 
+    border-radius: 50%; /* Rounded corners */
+    border: 3px solid var(--accent); 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Adds a slight shadow for depth */
+}
+
+.about-text {
+    flex: 1;
+}
+
+/* MOBILE RESPONSIVENESS */
+/* When screen is smaller than 768px, stack them top-to-bottom */
+@media (max-width: 768px) {
+    .about-flex-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-image img {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 20px;
+    }
+}
+
+/* ---------------- Education Section ------------ */
+.education-list {
+    display: grid;
+    grid-template-columns: 1fr; /* A single column of cards */
+    gap: 20px; /* Space between the education cards */
+}
+
+.education-entry {
+    background: var(--card-bg); /* Uses your theme's card background */
+    color: var(--card-text); /* Uses your theme's card text color */
+    padding: 20px 25px;
+    border-radius: 10px; /* A standard border-radius */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* A subtle shadow */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.education-entry:hover {
+    transform: translateY(-5px); /* Lifts the card on hover */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.education-entry h3 {
+    color: var(--accent); /* Uses your theme's accent color */
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.4rem;
+}
+
+.education-entry .institution {
+    margin: 0 0 12px 0;
+    font-size: 1.1rem;
+    font-style: italic; /* Makes the university stand out */
+}
+
+.education-entry .details {
+    display: flex;
+    justify-content: space-between; /* Puts date on left, grade on right */
+    align-items: center;
+    margin: 0;
+    font-size: 1rem;
+    color: var(--main-text); /* Uses your main text color */
+}
+
+.education-entry .details strong {
+    color: var(--accent); /* Makes the grade stand out */
+    font-weight: 600;
+}
+
+/* On mobile, stack the date and grade */
+@media (max-width: 480px) {
+    .education-entry .details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .education-entry h3 {
+        font-size: 1.2rem;
+    }
+
+    .education-entry .institution {
+        font-size: 1rem;
+    }
+}
+
+
+/* --- PROJECTS SECTION LAYOUT --- */
+
+/* 1. Set up the Grid Container */
+#projects .container { 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px; 
+    padding: 50px 20px;
+}
+
+/* 2. Style the Project Card */
+#projects .project { /* Added #projects to make selector more specific */
+    background: var(--card-bg); 
+    position: relative;
+    color: var(--card-text);
+    padding: 25px; 
+    border-radius: 50px; 
+    box-shadow: 0 4px 12px rgba(40, 159, 180, 0.611); 
+    transition: transform 0.3s, box-shadow 0.3s; 
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0; /* Override default .project margin */
+}
+
+/* 3. Add a Hover Effect */
+#projects .project:hover {
+    transform: translateY(-6px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
+    background-image: linear-gradient(135deg, #20c99633 0%, #119979b9 100%);
+    
+}
+
+/* 4. Style Card Elements */
+#projects .project h3 {
+    color: var(--accent);
+    margin-top: 0; /* Remove space above heading */
+    margin-bottom: 10px;
+}
+
+#projects .project p {
+    flex-grow: 1; /* Pushes the button to the bottom */
+    margin-bottom: 20px;
+}
+
+.stretched-link::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1; /* Sits 'on top' of other card content */
+}
+
+/* Fix the link styling */
+.project h3 a {
+    color: inherit; 
+    text-decoration: none; 
+}
+.project h3 a:hover {
+    text-decoration:none; 
+    color: rgba(255, 166, 0, 0.712);
+}
+
+
+
+/*-------------- Get In Touch --------------*/
+#contact .social-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.social-links a {
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: var(--main-text); /* Changed from #333 */
+    transition: 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: translateY(-3px);
+    color: #fff; /* Ensure text is white on colored background */
+}
+
+/* Individual platform colors */
+.facebook:hover {
+    background-color: #1877F2;
+}
+
+.twitter:hover {
+    background-color: #1DA1F2;
+}
+
+.youtube:hover {
+    background-color: #FF0000;
+}
+
+.instagram:hover {
+    background-color: #E4405F;
+}
+.github:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.linkedin:hover {
+    background-color: #0A66C2;
+    color: #fff;
+}
+
+.leetcode:hover {
+    background-color: #FFA116;
+    color: #fff;
+}
+
+.hackerrank:hover {
+    background-color: #2EC866;
+    color: #fff;
+}
+
+.contact-form-container {
+    max-width: 600px; /* Or a width that fits your design */
+    margin: 40px auto 0; /* Adds space above the form */
+    padding: 20px;
+    background: var(--card-bg, #f9f9f9); /* Use your card bg variable or a fallback */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.contact-form-container h3 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--accent, #333); /* Use your accent color variable or a fallback */
+}
+
+/* Groups for labels and inputs */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--main-text); /* <-- FIX: Was var(--text-color) */
+}
+
+/* Style for both input and textarea */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-family: inherit; /* Ensures it uses your site's font */
+    color: var(--main-text); /* <-- FIX: Was var(--text-color) */
+    background: var(--main-bg); /* Changed from #fff */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box; /* Important for padding to work correctly */
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent, #0A66C2); /* Use an accent color on focus */
+    box-shadow: 0 0 5px rgba(10, 102, 194, 0.3); /* Optional focus glow */
+}
+
+/* Assuming you have a .cta-btn style already. 
+   If not, this provides a solid base. */
+button.cta-btn {
+    display: inline-block;
+    width: 100%; /* Make button full-width */
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    background-color: var(--accent, #0A66C2); /* Use a strong accent color */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button.cta-btn:hover {
+    background-color: #08509a; /* A slightly darker shade for hover */
+    transform: translateY(-2px);
+}
+
+/* ---------------- Footer Section ------------ */
+footer {
+    background: var(--nav-bg);
+    color: var(--main-text);
+    text-align: center;
+    padding: 15px 10px;
+    font-size: 0.9rem;
+    transition: background 0.4s, color 0.4s;
+    margin-top: 40px; /* Added margin-top from previous footer style */
+}
